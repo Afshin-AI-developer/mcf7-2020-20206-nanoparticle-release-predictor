@@ -29,14 +29,53 @@ with open(MODEL_PATH, "rb") as f:
 
 st.subheader("Enter Input Variables")
 
-size_dls = st.number_input("size (DLS) of nanoparticle (nm)-mean", value=150.0, format="%.6f")
-pdi = st.number_input("Polydispersity Index (PDI) of nanoparticle-mean", value=0.200000, format="%.6f")
-zeta = st.number_input("Zeta potential of nanoparticle (mV)-mean", value=-20.0, format="%.6f")
-drug_loading = st.number_input("Drug loading capacity (%)-mean", value=10.0, format="%.6f")
-entrapment_eff = st.number_input("Entrapment efficiency of nanoparticle (%)-mean", value=75.0, format="%.6f")
-temperature = st.number_input("Temperature °C", value=37.0, format="%.6f")
-ph = st.number_input("PH", value=7.4, format="%.6f")
-time_release = st.number_input("Time of Drug release (h)", value=24.0, format="%.6f")
+size_dls = st.number_input(
+    "size (DLS) of nanoparticle (nm)-mean",
+    value=150.00,
+    format="%.2f"
+)
+
+pdi = st.number_input(
+    "Polydispersity Index (PDI) of nanoparticle-mean",
+    value=0.20,
+    format="%.2f"
+)
+
+zeta = st.number_input(
+    "Zeta potential of nanoparticle (mV)-mean",
+    value=-20.00,
+    format="%.2f"
+)
+
+drug_loading = st.number_input(
+    "Drug loading capacity (%)-mean",
+    value=10.00,
+    format="%.2f"
+)
+
+entrapment_eff = st.number_input(
+    "Entrapment efficiency of nanoparticle (%)-mean",
+    value=75.00,
+    format="%.2f"
+)
+
+temperature = st.number_input(
+    "Temperature °C",
+    value=37.00,
+    format="%.2f"
+)
+
+ph = st.number_input(
+    "PH",
+    value=7.40,
+    format="%.2f"
+)
+
+time_release = st.number_input(
+    "Time of Drug release (h)",
+    value=24.00,
+    format="%.2f"
+)
 
 if st.button("Predict Drug Release Amount (%)"):
     input_data = np.array([[
@@ -51,5 +90,6 @@ if st.button("Predict Drug Release Amount (%)"):
     ]], dtype=float)
 
     prediction = model.predict(input_data)[0]
+
 
     st.success(f"Predicted Drug Release Amount (%): {prediction:.4f}")
